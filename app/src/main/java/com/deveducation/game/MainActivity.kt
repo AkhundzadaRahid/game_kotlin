@@ -2,20 +2,20 @@ package com.deveducation.game
 
 
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import kotlinx.android.synthetic.main.activity_main.*
-import org.w3c.dom.Text
-import kotlin.random.Random
-import android.text.Editable
-import android.text.TextWatcher
-import androidx.core.view.isVisible
 
 
 class MainActivity : Activity() {
+
+
+
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,9 +27,18 @@ class MainActivity : Activity() {
     var userScore=0
     var pcScore=0
 
-fun restart(view: View){
+fun restart(view: View) {
+
     textView1.text=""
     textView3.text=""
+    deal.visibility= VISIBLE
+    textView5.visibility = GONE
+    textView1.visibility = VISIBLE
+    textView2.visibility = VISIBLE
+    textView3.visibility = VISIBLE
+    textView4.visibility = VISIBLE
+
+
 }
 
     fun exit(view: View){
@@ -39,6 +48,8 @@ fun restart(view: View){
 
 
     fun Deal(View:View){
+
+        textView5.text=""
 
         val left= (2..14).random()
         val right= (2..14).random()
@@ -54,21 +65,36 @@ fun restart(view: View){
         }else if (right>left){
             pcScore=pcScore+1
         }
-        else{
-            null
-        }
+
 
         textView1.setText(userScore.toString())
         textView3.setText(pcScore.toString())
 
-        if (userScore==20){
+        if (userScore==10) {
+        textView5.text="USER WIN THE GAME"
+            textView5.visibility=VISIBLE
+            userScore=0
+            pcScore=0
+            deal.visibility= GONE
 
-            textView5.text="USER WIN THE GAME"
+            textView1.visibility= GONE
+            textView2.visibility= GONE
+            textView3.visibility= GONE
+            textView4.visibility= GONE
+
+
+                    }
+        else if(pcScore==10){
+            textView5.text="PC WIN THE GAME"
+            textView5.visibility=VISIBLE
+            userScore=0
+            pcScore=0
+            deal.visibility= GONE
+            textView1.visibility= GONE
+            textView2.visibility= GONE
+            textView3.visibility= GONE
+            textView4.visibility= GONE
         }
-
-
-
-
     }
 
 
